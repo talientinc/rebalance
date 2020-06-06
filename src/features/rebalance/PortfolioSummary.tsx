@@ -34,6 +34,18 @@ const formatShare = (ps: PositionStatus): string => {
     );
 };
 
+const formatRelativeError = (ps: PositionStatus): string => {
+    if (ps.actualRatio === ps.desiredRatio) {
+        return "0%";
+    } else if (ps.desiredRatio === 0) {
+        return "∞";
+    } else {
+        return formatPercent(
+            (ps.actualRatio - ps.desiredRatio) / ps.desiredRatio
+        );
+    }
+};
+
 const formatDollars = (dollars: number): string => {
     return dollars < 0 ? "(" + usd.format(-dollars) + ")" : usd.format(dollars);
 };
@@ -132,6 +144,7 @@ export function PortfolioSummary() {
                         <th colSpan={2} className="text-center">
                             Shortfall (Excess)
                         </th>
+                        <th className="text-center">Relative Error</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -139,7 +152,7 @@ export function PortfolioSummary() {
                         <tr>
                             <td
                                 className="text-danger"
-                                colSpan={showFixed ? 7 : 5}
+                                colSpan={showFixed ? 9 : 7}
                             >
                                 {portfolioError}
                             </td>
@@ -178,6 +191,9 @@ export function PortfolioSummary() {
                                 {formatPercent(
                                     ps.desiredRatio - ps.actualRatio
                                 )}
+                            </td>
+                            <td className="text-center">
+                                {formatRelativeError(ps)}
                             </td>
                         </tr>
                     ))}
