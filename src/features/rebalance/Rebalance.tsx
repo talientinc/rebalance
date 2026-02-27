@@ -17,10 +17,10 @@ export function Rebalance() {
     const dispatch = useDispatch();
 
     const location = useLocation();
-    const search = new URLSearchParams(location.search);
 
     useEffect(() => {
         // Restore the bookmarked state if one was specified on the route.
+        const search = new URLSearchParams(location.search);
         const decodedBookmark = search.has("bookmark")
             ? decodeBookmark(search.get("bookmark"))
             : "";
@@ -28,7 +28,7 @@ export function Rebalance() {
         if (decodedBookmark) {
             dispatch(restoreBookmark(decodedBookmark));
         }
-    }, [search, dispatch]);
+    }, [location.search, dispatch]);
 
     return (
         <div>
