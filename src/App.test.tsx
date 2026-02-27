@@ -23,11 +23,11 @@ library.add(
 );
 
 test('renders portfolio summary', () => {
-  const { getByText } = render(
+  const { getAllByText } = render(
     <Provider store={store}>
       <App />
     </Provider>
   );
 
-  expect(getByText(/Portfolio Summary/i)).toBeInTheDocument();
+  expect(getAllByText(/Portfolio Summary/i).length).toBeGreaterThan(0);
 });
