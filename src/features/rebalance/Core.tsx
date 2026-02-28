@@ -1,6 +1,6 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Form, InputGroup } from "react-bootstrap";
+import { Col, Form, InputGroup, Row } from "react-bootstrap";
 
 import { selectCore, updateCore } from "./rebalanceSlice";
 import {
@@ -18,13 +18,13 @@ export function Core() {
     const [amount, setAmount] = useState(toDollars(core.cents));
     const [percent, setPercent] = useState(toDisplay(core.percent));
 
-    const onChangeCents = (e: FormEvent<HTMLInputElement>) => {
+    const onChangeCents = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const dollars = normalizeDollars(e.currentTarget.value);
         setAmount(dollars);
         dispatch(updateCore({ cents: toCents(dollars) }));
     };
 
-    const onChangePercent = (e: FormEvent<HTMLInputElement>) => {
+    const onChangePercent = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const updatedPercent = normalizePercent(e.currentTarget.value);
         setPercent(updatedPercent);
         dispatch(updateCore({ percent: Number(updatedPercent) }));
@@ -41,37 +41,33 @@ export function Core() {
 
     return (
         <div>
-            <span className="h4 pr-2">Core</span>
-            <Form.Row>
-                <Form.Group as={Col} xs={5} sm={4} md={3} lg={2}>
-                    <Form.Label srOnly>Amount</Form.Label>
+            <span className="h4 pe-2">Core</span>
+            <Row>
+                <Form.Group as={Col} xs={5} sm={4} md={3} lg={2} className="mb-3">
+                    <Form.Label visuallyHidden>Amount</Form.Label>
                     <InputGroup>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>$</InputGroup.Text>
-                        </InputGroup.Prepend>
+                        <InputGroup.Text>$</InputGroup.Text>
                         <Form.Control
-                            className="text-right"
+                            className="text-end"
                             placeholder="Amount"
                             value={amount}
                             onChange={onChangeCents}
                         />
                     </InputGroup>
                 </Form.Group>
-                <Form.Group as={Col} xs={3} md={2}>
-                    <Form.Label srOnly>Percent</Form.Label>
+                <Form.Group as={Col} xs={3} md={2} className="mb-3">
+                    <Form.Label visuallyHidden>Percent</Form.Label>
                     <InputGroup>
                         <Form.Control
-                            className="text-right"
+                            className="text-end"
                             placeholder="Pct"
                             value={percent}
                             onChange={onChangePercent}
                         />
-                        <InputGroup.Append>
-                            <InputGroup.Text>%</InputGroup.Text>
-                        </InputGroup.Append>
+                        <InputGroup.Text>%</InputGroup.Text>
                     </InputGroup>
                 </Form.Group>
-            </Form.Row>
+            </Row>
         </div>
     );
 }

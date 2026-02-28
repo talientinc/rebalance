@@ -1,4 +1,4 @@
-import React, { ReactNodeArray } from "react";
+import React, { ReactNode } from "react";
 import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 
@@ -68,17 +68,17 @@ export function PortfolioSummary() {
         allReferencesResolved
     );
 
-    const flattenAttributionNodes = (): ReactNodeArray => {
-        return values.reduce((positionStatusNodes: ReactNodeArray, ps) => {
+    const flattenAttributionNodes = (): ReactNode[] => {
+        return values.reduce((positionStatusNodes: ReactNode[], ps) => {
             const attributionNodes = Object.entries(ps.attributions).reduce(
-                (tableRows: ReactNodeArray, [fp, cents]) => {
+                (tableRows: ReactNode[], [fp, cents]) => {
                     const tableRow = (
                         <tr key={ps.name + "-" + fp}>
                             <td className="text-center">{fp}</td>
                             <td className="text-center">
                                 {ps.name || <em>Core</em>}
                             </td>
-                            <td className="text-right">
+                            <td className="text-end">
                                 {usd.format(cents / 100)}
                             </td>
                         </tr>
@@ -163,14 +163,14 @@ export function PortfolioSummary() {
                             <td className="text-center">
                                 {ps.name || <em>Core</em>}
                             </td>
-                            <td className="text-right">
+                            <td className="text-end">
                                 {usd.format(ps.tradableCents / 100)}
                             </td>
                             {showFixed && [
-                                <td key="3" className="text-right">
+                                <td key="3" className="text-end">
                                     {usd.format(ps.fixedCents / 100)}
                                 </td>,
-                                <td key="4" className="text-right">
+                                <td key="4" className="text-end">
                                     {usd.format(
                                         (ps.tradableCents + ps.fixedCents) / 100
                                     )}
@@ -184,7 +184,7 @@ export function PortfolioSummary() {
                             <td className="text-center">
                                 {formatPercent(ps.actualRatio)}
                             </td>
-                            <td className="text-right">
+                            <td className="text-end">
                                 {formatDollars(ps.desiredChange / 100)}
                             </td>
                             <td className="text-center">

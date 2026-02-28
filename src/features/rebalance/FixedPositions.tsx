@@ -1,4 +1,4 @@
-import React, { ReactNodeArray } from "react";
+import React, { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,16 +15,16 @@ export function FixedPositions() {
 
     // Generate a row for each fixed position with additional rows inserted
     // between them for each attribution defined for the fixed position.
-    const flattenFixedPositionNodes = (): ReactNodeArray => {
+    const flattenFixedPositionNodes = (): ReactNode[] => {
         return Object.keys(fixedPositions).reduce(
-            (nodes: ReactNodeArray, fpk) => {
+            (nodes: ReactNode[], fpk) => {
                 const fixedPositionNode = (
                     <FixedPosition key={fpk} id={Number(fpk)} />
                 );
                 const attributions = fixedPositions[Number(fpk)]?.attributions;
                 const attributionNodes = attributions
                     ? Object.keys(attributions).reduce(
-                          (aNodes: ReactNodeArray, ak) => {
+                          (aNodes: ReactNode[], ak) => {
                               const attributionNode = (
                                   <Attribution
                                       key={fpk + "-" + ak}

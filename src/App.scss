@@ -35,13 +35,13 @@ $input-btn-padding-x-lg: 0.5rem !default;
 .input-group-lg > .append-icon > .append-icon-text {
     padding: $input-padding-y-lg 0 $input-padding-y-lg $input-padding-x-lg;
     @include font-size($input-font-size-lg);
-    line-height: $input-line-height-lg;
+    line-height: $input-line-height;
 }
 
 .input-group-sm > .append-icon > .append-icon-text {
     padding: $input-padding-y-sm 0 $input-padding-y-sm $input-padding-x-sm;
     @include font-size($input-font-size-sm);
-    line-height: $input-line-height-sm;
+    line-height: $input-line-height;
 }
 
 .button-icon {
