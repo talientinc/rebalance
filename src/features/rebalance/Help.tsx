@@ -334,7 +334,7 @@ export function Help() {
                 .
             </p>
             <p>
-                <small>Release {`${process.env.REACT_APP_VERSION}`}</small>
+                <small>Release {`${import.meta.env.VITE_APP_VERSION}`}</small>
             </p>
         </RebalanceCard>
     );
