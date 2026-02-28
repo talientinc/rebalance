@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Table from "react-bootstrap/Table";
 
@@ -29,7 +29,7 @@ export function Pending() {
 
     const [amount, setAmount] = useState(toDollars(pending.cents));
 
-    const onChangeCents = (e: FormEvent<HTMLInputElement>) => {
+    const onChangeCents = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const dollars = normalizeDollars(e.currentTarget.value, true);
         setAmount(dollars);
         dispatch(updatePending({ cents: toCents(dollars) }));
@@ -67,12 +67,12 @@ export function Pending() {
         >
             <Form>
                 <Row>
-                    <Form.Group as={Col} xs={5} sm={4} md={3} lg={2}>
+                    <Form.Group as={Col} xs={5} sm={4} md={3} lg={2} className="mb-3">
                         <Form.Label visuallyHidden>Amount</Form.Label>
                         <InputGroup>
                             <InputGroup.Text>$</InputGroup.Text>
                             <Form.Control
-                                className="text-right"
+                                className="text-end"
                                 placeholder="Amount"
                                 value={amount}
                                 onChange={onChangeCents}

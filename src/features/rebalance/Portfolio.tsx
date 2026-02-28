@@ -38,12 +38,12 @@ export function Portfolio() {
                 <Positions />
                 <span className="h4 pe-2">Total</span>
                 <Row>
-                    <Form.Group as={Col} xs={5} sm={4} md={3} lg={2}>
+                    <Form.Group as={Col} xs={5} sm={4} md={3} lg={2} className="mb-3">
                         <Form.Label visuallyHidden>Amount</Form.Label>
                         <InputGroup>
                             <InputGroup.Text>$</InputGroup.Text>
                             <Form.Control
-                                className="text-right"
+                                className="text-end"
                                 placeholder="Amount"
                                 disabled
                                 readOnly
@@ -54,11 +54,11 @@ export function Portfolio() {
                             </Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
-                    <Form.Group as={Col} xs={3} md={2}>
+                    <Form.Group as={Col} xs={3} md={2} className="mb-3">
                         <Form.Label visuallyHidden>Percent</Form.Label>
                         <InputGroup>
                             <Form.Control
-                                className="text-right"
+                                className="text-end"
                                 placeholder="Pct"
                                 disabled
                                 readOnly

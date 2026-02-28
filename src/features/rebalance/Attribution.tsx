@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -34,7 +34,7 @@ export const Attribution: React.FC<{
         toDisplay(fp[fpk]?.attributions?.[ak]?.name)
     );
 
-    const onChangePercent = (e: FormEvent<HTMLInputElement>) => {
+    const onChangePercent = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const updatedPercent = normalizePercent(e.currentTarget.value);
         setPercent(updatedPercent);
         dispatch(
@@ -46,7 +46,7 @@ export const Attribution: React.FC<{
         );
     };
 
-    const onChangeName = (e: FormEvent<HTMLInputElement>) => {
+    const onChangeName = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setName(e.currentTarget.value);
         dispatch(
             updateAttribution({
@@ -74,11 +74,12 @@ export const Attribution: React.FC<{
                 sm={{ span: 3, offset: 1 }}
                 md={{ span: 2, offset: 1 }}
                 lg={{ span: 1, offset: 1 }}
+                className="mb-3"
             >
                 <Form.Label visuallyHidden>Percent</Form.Label>
                 <InputGroup size="sm">
                     <Form.Control
-                        className="text-right"
+                        className="text-end"
                         placeholder="Pct"
                         value={percent}
                         onChange={onChangePercent}
@@ -87,7 +88,7 @@ export const Attribution: React.FC<{
                     <Form.Control.Feedback>Required</Form.Control.Feedback>
                 </InputGroup>
             </Form.Group>
-            <Form.Group as={Col} xs={6} sm={7} md={8} lg={9}>
+            <Form.Group as={Col} xs={6} sm={7} md={8} lg={9} className="mb-3">
                 <Form.Label visuallyHidden>Position</Form.Label>
                 <InputGroup size="sm">
                     <Form.Control

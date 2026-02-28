@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Form, InputGroup, Row } from "react-bootstrap";
 
@@ -28,7 +28,7 @@ export const Position: React.FC<{
     const [percent, setPercent] = useState(toDisplay(positions[id].percent));
     const [name, setName] = useState(toDisplay(positions[id].name));
 
-    const onChangeCents = (e: FormEvent<HTMLInputElement>) => {
+    const onChangeCents = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const dollars = normalizeDollars(e.currentTarget.value);
         setAmount(dollars);
         dispatch(
@@ -39,7 +39,7 @@ export const Position: React.FC<{
         );
     };
 
-    const onChangePercent = (e: FormEvent<HTMLInputElement>) => {
+    const onChangePercent = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const updatedPercent = normalizePercent(e.currentTarget.value);
         setPercent(updatedPercent);
         dispatch(
@@ -50,7 +50,7 @@ export const Position: React.FC<{
         );
     };
 
-    const onChangeName = (e: FormEvent<HTMLInputElement>) => {
+    const onChangeName = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setName(e.currentTarget.value);
         dispatch(
             updatePosition({
@@ -74,12 +74,12 @@ export const Position: React.FC<{
 
     return (
         <Row className="me-0">
-            <Form.Group as={Col} xs={5} sm={4} md={3} lg={2}>
+            <Form.Group as={Col} xs={5} sm={4} md={3} lg={2} className="mb-3">
                 <Form.Label visuallyHidden>Amount</Form.Label>
                 <InputGroup>
                     <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control
-                        className="text-right"
+                        className="text-end"
                         placeholder="Amount"
                         value={amount}
                         onChange={onChangeCents}
@@ -87,11 +87,11 @@ export const Position: React.FC<{
                     <Form.Control.Feedback>Required</Form.Control.Feedback>
                 </InputGroup>
             </Form.Group>
-            <Form.Group as={Col} xs={3} md={2}>
+            <Form.Group as={Col} xs={3} md={2} className="mb-3">
                 <Form.Label visuallyHidden>Percent</Form.Label>
                 <InputGroup>
                     <Form.Control
-                        className="text-right"
+                        className="text-end"
                         aria-label="Percent"
                         placeholder="Pct"
                         value={percent}
@@ -101,7 +101,7 @@ export const Position: React.FC<{
                     <Form.Control.Feedback>Required</Form.Control.Feedback>
                 </InputGroup>
             </Form.Group>
-            <Form.Group as={Col} xs={4} sm={5} md={7} lg={8}>
+            <Form.Group as={Col} xs={4} sm={5} md={7} lg={8} className="mb-3">
                 <Form.Label visuallyHidden>Name</Form.Label>
                 <InputGroup className={"float-start"}>
                     <Form.Control

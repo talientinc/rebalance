@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Form, InputGroup, Row } from "react-bootstrap";
 
@@ -32,7 +32,7 @@ export const FixedPosition: React.FC<{
     const [amount, setAmount] = useState(toDollars(fixedPositions[id].cents));
     const [name, setName] = useState(toDisplay(fixedPositions[id].name));
 
-    const onChangeCents = (e: FormEvent<HTMLInputElement>) => {
+    const onChangeCents = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const dollars = normalizeDollars(e.currentTarget.value);
         setAmount(dollars);
         dispatch(
@@ -43,7 +43,7 @@ export const FixedPosition: React.FC<{
         );
     };
 
-    const onChangeName = (e: FormEvent<HTMLInputElement>) => {
+    const onChangeName = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setName(e.currentTarget.value);
         dispatch(
             updateFixedPosition({
@@ -74,19 +74,19 @@ export const FixedPosition: React.FC<{
 
     return (
         <Row>
-            <Form.Group as={Col} xs={5} sm={4} md={3} lg={2}>
+            <Form.Group as={Col} xs={5} sm={4} md={3} lg={2} className="mb-3">
                 <Form.Label visuallyHidden>Amount</Form.Label>
                 <InputGroup>
                     <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control
-                        className="text-right"
+                        className="text-end"
                         placeholder="Amount"
                         value={amount}
                         onChange={onChangeCents}
                     />
                 </InputGroup>
             </Form.Group>
-            <Form.Group as={Col}>
+            <Form.Group as={Col} className="mb-3">
                 <Form.Label visuallyHidden>Name</Form.Label>
                 <InputGroup className={"float-start"}>
                     <Form.Control
