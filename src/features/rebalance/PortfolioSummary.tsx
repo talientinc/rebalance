@@ -1,4 +1,4 @@
-import React, { ReactNodeArray } from "react";
+import React, { ReactNode } from "react";
 import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 
@@ -68,10 +68,10 @@ export function PortfolioSummary() {
         allReferencesResolved
     );
 
-    const flattenAttributionNodes = (): ReactNodeArray => {
-        return values.reduce((positionStatusNodes: ReactNodeArray, ps) => {
+    const flattenAttributionNodes = (): ReactNode[] => {
+        return values.reduce((positionStatusNodes: ReactNode[], ps) => {
             const attributionNodes = Object.entries(ps.attributions).reduce(
-                (tableRows: ReactNodeArray, [fp, cents]) => {
+                (tableRows: ReactNode[], [fp, cents]) => {
                     const tableRow = (
                         <tr key={ps.name + "-" + fp}>
                             <td className="text-center">{fp}</td>

@@ -18,7 +18,7 @@ import {
     toDollars,
     usd,
 } from "./util";
-import { Col, Form, InputGroup } from "react-bootstrap";
+import { Col, Form, InputGroup, Row } from "react-bootstrap";
 
 export function Pending() {
     const pending = useSelector(selectPending);
@@ -66,13 +66,11 @@ export function Pending() {
             collapsed
         >
             <Form>
-                <Form.Row>
+                <Row>
                     <Form.Group as={Col} xs={5} sm={4} md={3} lg={2}>
-                        <Form.Label srOnly>Amount</Form.Label>
+                        <Form.Label visuallyHidden>Amount</Form.Label>
                         <InputGroup>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>$</InputGroup.Text>
-                            </InputGroup.Prepend>
+                            <InputGroup.Text>$</InputGroup.Text>
                             <Form.Control
                                 className="text-right"
                                 placeholder="Amount"
@@ -81,7 +79,7 @@ export function Pending() {
                             />
                         </InputGroup>
                     </Form.Group>
-                </Form.Row>
+                </Row>
             </Form>
             <Table
                 striped

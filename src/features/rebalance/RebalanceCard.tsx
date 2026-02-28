@@ -7,6 +7,7 @@ export const RebalanceCard: React.FC<{
     title?: ReactNode;
     help?: ReactNode;
     collapsed?: boolean;
+    children?: ReactNode;
 }> = ({ title, help, children, collapsed }) => {
     const [show, setShow] = useState(!Boolean(collapsed));
     const [showHelp, setShowHelp] = useState(false);
@@ -17,16 +18,16 @@ export const RebalanceCard: React.FC<{
         <Card>
             <Card.Header>
                 <Button
-                    className="button-icon float-left"
+                    className="button-icon float-start"
                     aria-label={`${show ? "Hide" : "Show"} ${title}`}
                     onClick={() => setShow(!show)}
                 >
                     <FontAwesomeIcon size="2x" icon={discloseName} />
                 </Button>
-                <span className="h4 mb-0 pl-3">{title}</span>
+                <span className="h4 mb-0 ps-3">{title}</span>
                 {help && (
                     <Button
-                        className="button-icon float-right"
+                        className="button-icon float-end"
                         aria-label={`help`}
                         onClick={() => {
                             setShowHelp(true);
@@ -51,7 +52,7 @@ export const RebalanceCard: React.FC<{
                             <div className="text-nowrap">
                                 <small>
                                     For further information, see
-                                    <span className="font-weight-bold">
+                                    <span className="fw-bold">
                                         {" "}
                                         Detailed Help{" "}
                                     </span>

@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Form, InputGroup } from "react-bootstrap";
+import { Col, Form, InputGroup, Row } from "react-bootstrap";
 
 import { selectCore, updateCore } from "./rebalanceSlice";
 import {
@@ -41,14 +41,12 @@ export function Core() {
 
     return (
         <div>
-            <span className="h4 pr-2">Core</span>
-            <Form.Row>
+            <span className="h4 pe-2">Core</span>
+            <Row>
                 <Form.Group as={Col} xs={5} sm={4} md={3} lg={2}>
-                    <Form.Label srOnly>Amount</Form.Label>
+                    <Form.Label visuallyHidden>Amount</Form.Label>
                     <InputGroup>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>$</InputGroup.Text>
-                        </InputGroup.Prepend>
+                        <InputGroup.Text>$</InputGroup.Text>
                         <Form.Control
                             className="text-right"
                             placeholder="Amount"
@@ -58,7 +56,7 @@ export function Core() {
                     </InputGroup>
                 </Form.Group>
                 <Form.Group as={Col} xs={3} md={2}>
-                    <Form.Label srOnly>Percent</Form.Label>
+                    <Form.Label visuallyHidden>Percent</Form.Label>
                     <InputGroup>
                         <Form.Control
                             className="text-right"
@@ -66,12 +64,10 @@ export function Core() {
                             value={percent}
                             onChange={onChangePercent}
                         />
-                        <InputGroup.Append>
-                            <InputGroup.Text>%</InputGroup.Text>
-                        </InputGroup.Append>
+                        <InputGroup.Text>%</InputGroup.Text>
                     </InputGroup>
                 </Form.Group>
-            </Form.Row>
+            </Row>
         </div>
     );
 }

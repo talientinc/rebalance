@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Col, Form, InputGroup } from "react-bootstrap";
+import { Col, Form, InputGroup, Row } from "react-bootstrap";
 
 import { RebalanceCard } from "./RebalanceCard";
 import { Core } from "./Core";
@@ -36,14 +36,12 @@ export function Portfolio() {
             <div>
                 <Core />
                 <Positions />
-                <span className="h4 pr-2">Total</span>
-                <Form.Row>
+                <span className="h4 pe-2">Total</span>
+                <Row>
                     <Form.Group as={Col} xs={5} sm={4} md={3} lg={2}>
-                        <Form.Label srOnly>Amount</Form.Label>
+                        <Form.Label visuallyHidden>Amount</Form.Label>
                         <InputGroup>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>$</InputGroup.Text>
-                            </InputGroup.Prepend>
+                            <InputGroup.Text>$</InputGroup.Text>
                             <Form.Control
                                 className="text-right"
                                 placeholder="Amount"
@@ -57,7 +55,7 @@ export function Portfolio() {
                         </InputGroup>
                     </Form.Group>
                     <Form.Group as={Col} xs={3} md={2}>
-                        <Form.Label srOnly>Percent</Form.Label>
+                        <Form.Label visuallyHidden>Percent</Form.Label>
                         <InputGroup>
                             <Form.Control
                                 className="text-right"
@@ -66,15 +64,13 @@ export function Portfolio() {
                                 readOnly
                                 value={toDisplay(totalPercent)}
                             />
-                            <InputGroup.Append>
-                                <InputGroup.Text>%</InputGroup.Text>
-                            </InputGroup.Append>
+                            <InputGroup.Text>%</InputGroup.Text>
                             <Form.Control.Feedback>
                                 Required
                             </Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
-                </Form.Row>
+                </Row>
             </div>
         </RebalanceCard>
     );
